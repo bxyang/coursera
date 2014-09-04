@@ -41,12 +41,8 @@ object Main {
   def countChange(money: Int, coins: List[Int]): Int = {
     if (money == 0) 1
     else if (! coins.isEmpty) {
-      var cnt = 0;
-      var n = money/coins.head;
-      for (i <- 0 to n) {
-        cnt += countChange(money - i*coins.head, coins.tail)
-      }
-      cnt
+      val n = money/coins.head;
+      {for (i <- 0 to n) yield countChange(money - i*coins.head, coins.tail)}.sum
     } else 0
   }
 }
